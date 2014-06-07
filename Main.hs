@@ -1,4 +1,11 @@
 module Main where
 
+import Data.Maybe (listToMaybe)
+import System.Environment (getArgs)
+
+import Hello (hello)
+
 main :: IO ()
-main = putStrLn "Hello Haskell World!"
+main = do
+    name <- listToMaybe `fmap` getArgs
+    putStrLn $ hello $ maybe "Haskell" id name
